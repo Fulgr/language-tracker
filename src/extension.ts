@@ -15,19 +15,19 @@ export function activate(context: vscode.ExtensionContext) {
 		const currentLanguage = vscode.window.activeTextEditor?.document.languageId ?? '';
 
 		if (languages[currentLanguage]) {
-			languages[currentLanguage] += 1;
+			languages[currentLanguage] += 2;
 		} else {
-			languages[currentLanguage] = 1;
+			languages[currentLanguage] = 2;
 		}
 
-		const hours = Math.round(languages[currentLanguage] / 3600);
+		const hours = Math.round((languages[currentLanguage] / 3600) * 10) / 10;
 		newText = `${currentLanguage}: ${hours}h`
 		if (oldText !== newText) {
 			oldText = `${currentLanguage}: ${hours}h`
 			vscode.window.showInformationMessage(oldText);
 		}
 		fs.writeFileSync('languages.json', JSON.stringify(languages));
-	}, 1000);
+	}, 2000);
 }
 
 export function deactivate() {}
