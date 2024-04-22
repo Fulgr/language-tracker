@@ -15,27 +15,19 @@ export function activate(context: vscode.ExtensionContext) {
 		const currentLanguage = vscode.window.activeTextEditor?.document.languageId ?? '';
 
 		if (languages[currentLanguage]) {
-			languages[currentLanguage] += 5;
+			languages[currentLanguage] += 1;
 		} else {
-			languages[currentLanguage] = 5;
+			languages[currentLanguage] = 1;
 		}
 
-		const calculateTime = (seconds: number) => {
-			const minutes = Math.floor(seconds / 60);
-			const hours = Math.floor(minutes / 60);
-			const days = Math.floor(hours / 24);
-
-			return { minutes, hours, days };
-		};
-
-		const time = calculateTime(languages[currentLanguage]);
-		newText = `Current language: ${currentLanguage}, Time spent: ${time.days} days, ${time.hours} hours, ${time.minutes} minutes`
+		const hours = Math.round(languages[currentLanguage] / 3600);
+		newText = `${currentLanguage}: ${hours}h`
 		if (oldText !== newText) {
-			oldText = `Current language: ${currentLanguage}, Time spent: ${time.days} days, ${time.hours} hours, ${time.minutes} minutes`
+			oldText = `${currentLanguage}: ${hours}h`
 			vscode.window.showInformationMessage(oldText);
 		}
 		fs.writeFileSync('languages.json', JSON.stringify(languages));
-	}, 5000);
+	}, 1000);
 }
 
 export function deactivate() {}
