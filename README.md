@@ -7,8 +7,6 @@ The extension shows the amount of time you've spent working in a file of a given
 
 ![Coding language time per file](/image1.png)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
 ## Known Issues
 
 ...
