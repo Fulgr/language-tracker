@@ -5,13 +5,13 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "helloworld" is now active!');
 
 	let languages: { [key: string]: number } = {};
-	if (fs.existsSync('languages.json')) {
-		languages = JSON.parse(fs.readFileSync('languages.json'));
-	}
 	var oldText = "";
 	var newText = "";
 
 	setInterval(() => {
+		if (fs.existsSync('languages.json')) {
+			languages = JSON.parse(fs.readFileSync('languages.json'));
+		}
 		const currentLanguage = vscode.window.activeTextEditor?.document.languageId ?? '';
 
 		if (currentLanguage !== '') {
